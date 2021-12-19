@@ -1,0 +1,33 @@
+{% extends "App_Victim/base.html" %}
+
+{% block title %}
+View Data
+{% endblock %}
+
+{% block content %}
+    <br>
+    <h1>List of Victim</h1>
+    <br>
+    <table class="table table-hover">
+    <tr style="background-color: #2a2c2e">
+        <th style="color: aliceblue">IcNo</th>
+        <th style="color: aliceblue">Name</th>
+        <th style="color: aliceblue">Phone</th>
+        <th style="color: aliceblue">Age</th>
+    </tr>
+    {% for victim in victim_list %}
+        <tr>
+            <td><a href="{% url "victim-detail" victim.ic_no %}">{{ victim.ic_no }}</a></td>
+            <td>{{ victim.name }}</td>
+            <td>{{ victim.hp_no }}</td>
+            <td>{{ victim.calc_age }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    {% if status %}
+        <script>
+            alert("{{status}}");
+        </script>
+    {% endif %}
+{% endblock %}
+

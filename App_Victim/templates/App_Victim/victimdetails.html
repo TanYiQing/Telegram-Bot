@@ -1,0 +1,32 @@
+{% extends "App_Victim/base.html" %}
+
+{% block title %}
+{{ victim.name }}
+{% endblock %}
+
+{% block content %}
+        <form action="" method="post">
+        {% csrf_token %}
+            <h1>Victim Details</h1>
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">IC Number</label>
+                <input type="text" class="form-control" maxlength="12" name="ic_no" value="{{ victim.ic_no }}" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="formGroupExampleInput2" class="form-label">Name</label>
+              <input type="text" class="form-control" name="name" value="{{ victim.name }}" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="formGroupExampleInput2" class="form-label">Age</label>
+              <input type="text" class="form-control" name="age" value="{{ victim.calc_age }}" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="formGroupExampleInput2" class="form-label">Phone Number</label>
+              <input type="text" class="form-control" name="hp_no" value="{{ victim.hp_no }}">
+            </div>
+            <div style="text-align: right">
+                <a href="{% url "view" %}"><button type="button" class="btn btn-primary btn-lg" style="background-color: red;border-color: transparent">Cancel</button></a>
+                <button type="submit" class="btn btn-secondary btn-lg" style="background-color: #2a2c2e;border-color: transparent">Edit</button>
+            </div>
+        </form>
+{% endblock %}
