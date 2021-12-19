@@ -9,7 +9,7 @@ API_KEY = "5034966448:AAH11XjVKeSK9dIQr6pXGDCAlB5vSwswxdY"
 
 # Set up the logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
-logging.info('Starting Bot...')
+logging.info('Starting Bot....')
 
 
 def start_command(update, context):
