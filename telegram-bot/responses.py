@@ -50,7 +50,7 @@ def get_data(message):
     try:
         conn = psycopg2.connect("postgres://skuqsoaiukahyo:f7c6d3d2519e855ee74d7ba3f669c4973cd1707f09ba6fef223d6bbce2870fcd@ec2-52-20-194-52.compute-1.amazonaws.com:5432/dfvpahtam3chdu", sslmode='require')
         cursor = conn.cursor()
-        cursor.execute("SELECT ic_no,hp_no,name FROM \"App_Victim_victim\" WHERE ic_no = '{}' AND hp_no = '{}'".format(ic_number,phone_number))# some sql statement
+        cursor.execute("SELECT ic_no,hp_no,name FROM \"App_Victim_victim\" WHERE ic_no = '{}' AND hp_no = '{}'".format(ic_number, phone_number))# some sql statement
         conn.commit()
         result = cursor.fetchall()
         ic = [i[0] for i in result]
