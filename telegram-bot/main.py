@@ -25,11 +25,11 @@ def main_menu(update, context):
 
 
 def help_menu(update, context):
-    update.callback_query.message.edit_text("What can I help you?", reply_markup=help_menu_keyboard())
+    update.callback_query.message.edit_text("What can I help you? Please do not hesitate to contact us.", reply_markup=help_menu_keyboard())
 
 
-def custom_command(update, context):
-    update.message.reply_text("This is a custom command, you can add whatever text you want here.")
+def contact_menu(update, context):
+    update.callback_query.message.edit_text("Contact Number: 0103373164\nEmail: yiqingtan99@gmail.com", reply_markup=contact_menu_keyboard())
 
 
 def handle_message(update, context):
@@ -61,23 +61,34 @@ def error(update, context):
     # Logs errors
     logging.error(f'Update {update} caused error {context.error}')
 
-### Menu Keyboard ###
+
 def start_menu_keyboard():
     keyboard = [[InlineKeyboardButton('Get Start Now!', callback_data='main')]]
     return InlineKeyboardMarkup(keyboard)
 
 
 def main_menu_keyboard():
-    keyboard = [[InlineKeyboardButton('Get Data', callback_data='getdata')],
-                [InlineKeyboardButton('Help', callback_data='help')],
-                [InlineKeyboardButton('About This Bot', callback_data='main')]]
+    keyboard = [
+        [InlineKeyboardButton('Get Info', callback_data='getdata')],
+        [InlineKeyboardButton('Help', callback_data='help'),
+         InlineKeyboardButton('About This Bot', callback_data='main')]
+    ]
+    return InlineKeyboardMarkup(keyboard)
+
+
+def getinfo_keyboard():
+    keyboard = [InlineKeyboardButton('Back', callback_data='main')]
     return InlineKeyboardMarkup(keyboard)
 
 
 def help_menu_keyboard():
-    keyboard = [[InlineKeyboardButton('Contact Us', callback_data='getdata')],
-                [InlineKeyboardButton('Feedback', callback_data='help')],
+    keyboard = [[InlineKeyboardButton('Contact Us', callback_data='contact')],
                 [InlineKeyboardButton('Back', callback_data='main')]]
+    return InlineKeyboardMarkup(keyboard)
+
+
+def contact_menu_keyboard():
+    keyboard = [InlineKeyboardButton('Back', callback_data='help')]
     return InlineKeyboardMarkup(keyboard)
 
 
@@ -89,13 +100,13 @@ if __name__ == '__main__':
     dp.add_handler(CommandHandler('start', start_command))
     dp.add_handler(CallbackQueryHandler(main_menu, pattern='main'))
     dp.add_handler(CallbackQueryHandler(help_menu, pattern='help'))
-    # dp.add_handler(CommandHandler('help', help_command))
-    dp.add_handler(CommandHandler('custom', custom_command))
+    dp.add_handler(CallbackQueryHandler(contact_menu, pattern='contact'))
     dp.add_handler(CommandHandler('getdata', get_data_command))
 
     # Messages
+
     # dp.add_handler(MessageHandler(Filters.text, handle_message))
-    # dp.add_handler(MessageHandler(Filters.text, handle_data))
+    dp.add_handler(MessageHandler(Filters.text, handle_data))
 
     # Log all errors
     dp.add_error_handler(error)
