@@ -69,7 +69,7 @@ def start_menu_keyboard():
 
 
 def main_menu_keyboard():
-    keyboard = [[InlineKeyboardButton('Get Info', callback_data=get_data_command)],
+    keyboard = [[InlineKeyboardButton('Get Info', text='getdata')],
                 [InlineKeyboardButton('Help', callback_data='help')],
                 [InlineKeyboardButton('About This Bot', callback_data='main')]]
     return InlineKeyboardMarkup(keyboard)
