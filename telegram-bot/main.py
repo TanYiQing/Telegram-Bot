@@ -5,7 +5,10 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import *
 import responses
 import os
+import django
 
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PKOB.settings')
+django.setup()
 
 API_KEY = "5034966448:AAH11XjVKeSK9dIQr6pXGDCAlB5vSwswxdY"
 
