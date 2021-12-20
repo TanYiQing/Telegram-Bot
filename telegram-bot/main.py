@@ -1,5 +1,4 @@
 import logging
-import time
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import *
