@@ -61,7 +61,6 @@ def error(update, context):
     # Logs errors
     logging.error(f'Update {update} caused error {context.error}')
 
-
 ### Menu Keyboard ###
 def start_menu_keyboard():
     keyboard = [[InlineKeyboardButton('Get Start Now!', callback_data='main')]]
@@ -69,7 +68,7 @@ def start_menu_keyboard():
 
 
 def main_menu_keyboard():
-    keyboard = [[InlineKeyboardButton('Get Info', text='getdata')],
+    keyboard = [[InlineKeyboardButton('Get Data', callback_data='getdata')],
                 [InlineKeyboardButton('Help', callback_data='help')],
                 [InlineKeyboardButton('About This Bot', callback_data='main')]]
     return InlineKeyboardMarkup(keyboard)
