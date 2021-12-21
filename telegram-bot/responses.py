@@ -52,8 +52,8 @@ def process_message(message, response_array, response):
 def get_response(message):
     # custom response
     response_list = [
-        process_message(message, ['hello', 'hi', 'hey'], 'Hello there!'),
-        process_message(message, ['bye', 'goodbye'], 'Bye Bye, see you next time'),
+        process_message(message, ['hello', 'hi', 'hey'], 'Hello!'),
+        process_message(message, ['bye', 'goodbye'], 'Bye Bye, jumpa lagi!'),
     ]
 
     response_scores = []
