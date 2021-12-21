@@ -32,8 +32,8 @@
 
 
 ## Result/Output (Screenshot of the output)
-![1.3 photo](./images/output1.png)
-![1.3 photo](./images/output2.png)
+![output1 photo](./images/output1.png)
+![output2 photo](./images/output2.png)
 ## Youtube Presentation
 https://youtu.be/6B6d5zIk4-E
 ## List of Python packages (including the version) used for this system
