@@ -17,37 +17,46 @@ logging.info('Starting Bot...')
 
 
 def start_command(update, context):
-    update.message.reply_text('Hello there! I am PKOB Bot. How can I help you?', reply_markup=start_menu_keyboard())
+    user = update.message.from_user.first_name
+    update.message.reply_text('Hello {}! Saya ialah pkob_270607_bot. Bagaimana saya boleh membantu anda hari ini?'.format(user), reply_markup=start_menu_keyboard())
 
 
 def main_menu(update, context):
-    update.callback_query.message.edit_text("Please choose a function to proceed.",
+    update.callback_query.message.edit_text("Sila pilih fungsi untuk meneruskan.",
                                             reply_markup=main_menu_keyboard())
 
 
 def help_menu(update, context):
-    update.callback_query.message.edit_text("What can I help you? Please do not hesitate to contact us.",
+    update.callback_query.message.edit_text("Apa yang boleh saya bantu? Sila hubungi kami.",
                                             reply_markup=help_menu_keyboard())
 
 
 def contact_menu(update, context):
-    update.callback_query.message.edit_text("Contact Number: 0103373164\nEmail: yiqingtan99@gmail.com",
+    update.callback_query.message.edit_text("Nombor Telefon 0103373164\nEmail: yiqingtan99@gmail.com",
                                             reply_markup=contact_menu_keyboard())
 
 
 def about_menu(update, context):
-    update.callback_query.message.edit_text("Find out more about me!",
+    update.callback_query.message.edit_text("Ketahui lebih lanjut tentang kami!",
                                             reply_markup=about_menu_keyboard())
 
 
 def about_me_menu(update, context):
-    update.callback_query.message.edit_text("https://pkob-270607.herokuapp.com/",
+    update.callback_query.message.edit_text("PKOB adalah sistem berpusat dengan tujuan untuk membantu mangsa yang "
+                                            "menghadapi masalah bencana untuk meminta bantuan. Saya pkob_270607_bot "
+                                            "dan saya boleh membantu anda 24 jam untuk menyelesaikan rasa ingin tahu "
+                                            "anda. Untuk mengetahui tentang kami, anda boleh melayari laman web kami.",
                                             reply_markup=aboutme_menu_keyboard())
 
 
 def web_menu(update, context):
     update.callback_query.message.edit_text("https://pkob-270607.herokuapp.com/",
                                             reply_markup=website_menu_keyboard())
+
+
+def get_data_menu(update, context):
+    update.callback_query.message.edit_text("Sila beritahu saya Nombor Kad Pengenalan dan Nombor Telefon anda.\nContoh: 123456789456@0123456789",
+                                            reply_markup=getinfo_keyboard())
 
 
 def handle_message(update, context):
@@ -59,18 +68,14 @@ def handle_message(update, context):
     update.message.reply_text(response)
 
 
-def get_data_command(update, context):
-    update.message.reply_text(
-        "Please let me know your Nombor Kad Pengenalan and Nombor Telefon. For example 123456789456@0123456789")
-    dp.add_handler(MessageHandler(Filters.text, handle_data))
-
-
 def handle_data(update, context):
     text = str(update.message.text).lower()
-    logging.info(f'User ({update.message.chat.id}) says: {text}')
-    update.message.reply_text("I am trying to find the data, please wait a while...")
-    response = responses.get_data(text)
-
+    if "@" in text:
+        logging.info(f'User ({update.message.chat.id}) says: {text}')
+        update.message.reply_text("Saya sedang cuba mencari maklumat, sila tunggu sebentar...")
+        response = responses.get_data(text)
+    else:
+        response = responses.get_response(text)
     # Bot response
     update.message.reply_text(response)
 
@@ -81,51 +86,55 @@ def error(update, context):
 
 
 def start_menu_keyboard():
-    keyboard = [[InlineKeyboardButton('Get Start Now!', callback_data='main')]]
+    keyboard = [[InlineKeyboardButton('Mulakan Sekarang!', callback_data='main')]]
     return InlineKeyboardMarkup(keyboard)
 
 
 def main_menu_keyboard():
     keyboard = [
-        [InlineKeyboardButton('Get Info', callback_data='getdata')],
-        [InlineKeyboardButton('Help', callback_data='help'),
-         InlineKeyboardButton('About This Bot', callback_data='about')]
+        [InlineKeyboardButton('Dapatkan maklumat', callback_data='getdata')],
+        [InlineKeyboardButton('Pusat Bantuan', callback_data='help'),
+         InlineKeyboardButton('Tentang Bot Ini', callback_data='about')]
     ]
     return InlineKeyboardMarkup(keyboard)
 
 
 def getinfo_keyboard():
-    keyboard = [InlineKeyboardButton('Back', callback_data='main')]
+    keyboard = [
+        [InlineKeyboardButton('Dapatkan maklumat', callback_data='getdata')],
+        [InlineKeyboardButton('Pusat Bantuan', callback_data='help'),
+         InlineKeyboardButton('Tentang Bot Ini', callback_data='about')]
+    ]
     return InlineKeyboardMarkup(keyboard)
 
 
 def help_menu_keyboard():
-    keyboard = [[InlineKeyboardButton('Contact Us', callback_data='contactus')],
-                [InlineKeyboardButton('Back to main menu', callback_data='main')]]
+    keyboard = [[InlineKeyboardButton('Hubungi Kami', callback_data='contactus')],
+                [InlineKeyboardButton('Kembali ke menu utama', callback_data='main')]]
     return InlineKeyboardMarkup(keyboard)
 
 
 def contact_menu_keyboard():
-    keyboard = [[InlineKeyboardButton('Back to previous', callback_data='help')],
-                [InlineKeyboardButton('Back to main menu', callback_data='main')]]
+    keyboard = [[InlineKeyboardButton('Kembali', callback_data='help')],
+                [InlineKeyboardButton('Kembali ke menu utama', callback_data='main')]]
     return InlineKeyboardMarkup(keyboard)
 
 
 def about_menu_keyboard():
-    keyboard = [[InlineKeyboardButton('About Us', callback_data='aboutus'), InlineKeyboardButton('Our Website', callback_data='web')],
-                [InlineKeyboardButton('Back to main menu', callback_data='main')]]
+    keyboard = [[InlineKeyboardButton('Tentang Kami', callback_data='us'), InlineKeyboardButton('Laman Web', callback_data='web')],
+                [InlineKeyboardButton('Kembali ke menu utama', callback_data='main')]]
     return InlineKeyboardMarkup(keyboard)
 
 
 def aboutme_menu_keyboard():
-    keyboard = [[InlineKeyboardButton('Back to previous', callback_data='about')],
-                [InlineKeyboardButton('Back to main menu', callback_data='main')]]
+    keyboard = [[InlineKeyboardButton('Kembali', callback_data='about')],
+                [InlineKeyboardButton('Kembali ke menu utama', callback_data='main')]]
     return InlineKeyboardMarkup(keyboard)
 
 
 def website_menu_keyboard():
-    keyboard = [[InlineKeyboardButton('Back to previous', callback_data='about')],
-                [InlineKeyboardButton('Back to main menu', callback_data='main')]]
+    keyboard = [[InlineKeyboardButton('Kembali', callback_data='about')],
+                [InlineKeyboardButton('Kembali ke menu utama', callback_data='main')]]
     return InlineKeyboardMarkup(keyboard)
 
 
@@ -139,9 +148,10 @@ if __name__ == '__main__':
     dp.add_handler(CallbackQueryHandler(help_menu, pattern='help'))
     dp.add_handler(CallbackQueryHandler(contact_menu, pattern='contactus'))
     dp.add_handler(CallbackQueryHandler(about_menu, pattern='about'))
-    dp.add_handler(CallbackQueryHandler(about_me_menu, pattern='aboutus'))
+    dp.add_handler(CallbackQueryHandler(about_me_menu, pattern='us'))
     dp.add_handler(CallbackQueryHandler(web_menu, pattern='web'))
-    dp.add_handler(CommandHandler('getdata', get_data_command))
+    dp.add_handler(CallbackQueryHandler(get_data_menu, pattern='getdata'))
+    # dp.add_handler(CommandHandler('getdata', get_data_command))
 
     # Messages
 
