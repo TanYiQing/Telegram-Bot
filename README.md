@@ -32,6 +32,36 @@
 
 
 ## Result/Output (Screenshot of the output)
+![1.3 photo](./images/output1.png)
+![1.3 photo](./images/output2.png)
 ## Youtube Presentation
+https://youtu.be/6B6d5zIk4-E
 ## List of Python packages (including the version) used for this system
+|Package               |Version
+|--------------------- |-----------
+|APScheduler           |3.6.3
+|asgiref               |3.4.1
+|cachetools            |4.2.2
+|certifi               |2021.10.8
+|cffi                  |1.15.0
+|cryptography          |36.0.1
+|decorator             |5.1.0
+|dj-database-url       |0.5.0
+|Django                |3.2.8
+|future                |0.18.2
+|gunicorn              |20.1.0
+|pip                   |21.1.2
+|psycopg2-binary       |2.9.2
+|pycparser             |2.21
+|python-telegram-bot   |12.7
+|pytz                  |2021.3
+|pytz-deprecation-shim |0.1.0.post0
+|setuptools            |57.0.0
+|six                   |1.16.0
+|sqlparse              |0.4.2
+|tornado               |6.1
+|tzdata                |2021.5
+|tzlocal               |4.1
+|wheel                 |0.36.2
+
 ## References (Not less than 10)
