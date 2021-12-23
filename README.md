@@ -65,3 +65,23 @@ https://youtu.be/6B6d5zIk4-E
 |wheel                 |0.36.2
 
 ## References (Not less than 10)
+Migrating data from SQlite to PostgreSQL | Django. (2021, May 24). [Video]. YouTube. https://www.youtube.com/watch?v=BGEEzjGadYI&feature=youtu.be
+
+Palace, C. (2021, August 16). How to create a Telegram Bot for FREE in Python - PyCharm & Python 3.8 Installation [Video]. YouTube. https://www.youtube.com/watch?v=YNY1OGnhSow&feature=youtu.be
+
+Sammour, I. (2021, September 30). Python Telegram Bot with Custom Keyboard, Buttons, and Images [Video]. YouTube. https://www.youtube.com/watch?v=5qzsKXxElQ4&feature=youtu.be
+
+Elements Marketplace: Heroku Telegram python deploy. (n.d.). Heroku. https://elements.heroku.com/buttons/anshumanfauzdar/telegram-bot-heroku-deploy
+
+Execute PostgreSql query in django. (2019, May 21). Stack Overflow. https://stackoverflow.com/questions/56238978/execute-postgresql-query-in-django
+
+How to use PostgreSQL with Django. (n.d.). EDB. https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
+
+Proper way to build menus with python-telegram-bot. (2018, July 1). Stack Overflow. https://stackoverflow.com/questions/51125356/proper-way-to-build-menus-with-python-telegram-bot
+
+Python Database CRUD Sqlite basic using simple student management system. (n.d.). Gist. https://gist.github.com/techsharif/7868666b6c6de97cda20941cd2f8c6be
+
+Richter, M. (2018, December 5). Create your own Telegram bot with Django on Heroku – Part 10 – Creating a view for your bot’s webhook. Marc Richter’s Personal Site. https://www.marc-richter.info/django-telegram-bot-part-10/
+
+Telegram – a new era of messaging. (n.d.). Telegram. https://telegram.org/
+
