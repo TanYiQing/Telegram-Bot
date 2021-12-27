@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 
 import App_Victim.models
@@ -9,20 +9,29 @@ from django.contrib import messages
 
 def register(request):
     if request.method == "POST":
+        dateformat = "%d-%m-%Y"
         ic_no = request.POST["ic_no"]
         name = request.POST["name"]
         hp_no = request.POST["hp_no"]
 
-        ic_year = int(ic_no[0] + ic_no[1])
-        ic_month = int(ic_no[2] + ic_no[3])
-        ic_day = int(ic_no[4] + ic_no[5])
+        ic_year = ic_no[0] + ic_no[1]
+        ic_month = ic_no[2] + ic_no[3]
+        ic_day = ic_no[4] + ic_no[5]
 
+        current_year = datetime.now().year
+        now = str(current_year)[:2]
+        if int(now + ic_year) <= current_year:
+            year = str((int(now + "00") + int(ic_year)))
+        else:
+            year = str((int(now + "00") - 100 + int(ic_year)))
+
+        test_date = ic_day + '-' + ic_month + '-' + year
         valid_date = True
         try:
-            datetime.datetime(int(ic_year), int(ic_month), int(ic_day))
+            valid_date = bool(datetime.strptime(test_date, dateformat))
         except ValueError:
             valid_date = False
-
+        print(valid_date)
         if not Victim.objects.filter(ic_no=ic_no).exists():
             if valid_date:
                 victim = App_Victim.models.Victim(ic_no=ic_no, name=name, hp_no=hp_no)
