@@ -9,7 +9,7 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PKOB.settings')
 django.setup()
 
-API_KEY = "5034966448:AAH11XjVKeSK9dIQr6pXGDCAlB5vSwswxdY"
+API_KEY = "secret"
 
 # Set up the logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
